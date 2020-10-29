@@ -50,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
                     case DIALOGO_ALERTA_ESTILO:
                         crearDialogoAlertaEstilo("Saludos, diagolo alerta estilo, salir?");
                         break;
+
+                    case DIALOGO_LISTA_SIMPLE:
+                        String[] colores = getResources().getStringArray(R.array.colores);
+                        crearDialogoListaEstilo(colores);
+                        break;
+
                 }
             }
         });
@@ -106,6 +112,20 @@ public class MainActivity extends AppCompatActivity {
                         }
                 )
         ;
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void crearDialogoListaEstilo(final String[] colores){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogThemeDos);
+
+        alertDialogBuilder.setTitle("Dialogo de lista")
+                .setItems(colores, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(getApplicationContext(), "Seleccionaste: " + colores[id], Toast.LENGTH_LONG).show();
+                    }
+                });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
