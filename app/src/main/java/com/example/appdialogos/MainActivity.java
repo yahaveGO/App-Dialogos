@@ -56,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
                         crearDialogoListaEstilo(colores);
                         break;
 
+                    case DIALOGO_BOTONES_RADIO:
+                        String[] estadoCivil = getResources().getStringArray(R.array.estadoCivil);
+                        crearDialogoRadioEstilo(estadoCivil);
+                        break;
                 }
             }
         });
@@ -129,6 +133,25 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
+    private void crearDialogoRadioEstilo(final String[] estadoCivil){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialogThemeDos);
+
+        builder.setTitle("Estado Civil")
+                .setSingleChoiceItems(estadoCivil, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(getApplicationContext(), "Seleccionaste: " + estadoCivil[id], Toast.LENGTH_LONG).show();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+
+
+
 
 
 }
