@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">App Dialogos</string>
+
+
+    <string-array name="opciones">
+        <item>Dialogo Alerta Simple</item>
+        <item>Dialogo de Alerta con Estilo</item>
+        <item>Dialogo con Lista Simple</item>
+        <item>Dialogo con Botones de Radio</item>
+        <item>Dialogo con CheckBox</item>
+        <item>Dialogo Personalizado</item>
+        <item>Dialogo para la Fecha</item>
+        <item>Dialogo para la Hora</item>
+        <item>Inflater</item>
+    </string-array>
+
+    <string-array name="colores">
+        <item>Rojo</item>
+        <item>Amarillo</item>
+        <item>Verde</item>
+        <item>Azul</item>
+        <item>Purpura</item>
+        <item>Cafe</item>
+        <item>Negro</item>
+    </string-array>
+
+</resources>
