@@ -42,33 +42,36 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String seleccion = parent.getAdapter().getItem(position).toString();
                 switch (seleccion){
-
+//__________________________________________________________________________________________________1
                     case DIALOGO_ALERTA_SIMPLE:
                         desplegarMensajes("Desea hacer mas registros?");
                         break;
-
+//__________________________________________________________________________________________________2
                     case DIALOGO_ALERTA_ESTILO:
                         crearDialogoAlertaEstilo("Saludos, diagolo alerta estilo, salir?");
                         break;
-
+//__________________________________________________________________________________________________3
                     case DIALOGO_LISTA_SIMPLE:
                         String[] colores = getResources().getStringArray(R.array.colores);
                         crearDialogoListaEstilo(colores);
                         break;
-
+//__________________________________________________________________________________________________4
                     case DIALOGO_BOTONES_RADIO:
                         String[] estadoCivil = getResources().getStringArray(R.array.estadoCivil);
                         crearDialogoRadioEstilo(estadoCivil, "Estado Civil");
                         break;
+//__________________________________________________________________________________________________5
                     case DIALOGO_CHECK_BOX:
                         String[] competencias = getResources().getStringArray(R.array.competencias);
                         crearDialogoCheckBoxEstilo(competencias,"Competencias");
                         break;
+//__________________________________________________________________________________________________6
                 }
             }
         });
     }
 
+//__________________________________________________________________________________________________1
     private void desplegarMensajes(String mensaje){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Mensaje");
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-
+//__________________________________________________________________________________________________2
     private void crearDialogoAlertaEstilo(String mensaje){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogThemeDos);
         alertDialogBuilder.setTitle("Titulo");
@@ -124,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+//__________________________________________________________________________________________________3
     private void crearDialogoListaEstilo(final String[] colores){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogThemeDos);
 
@@ -138,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+//__________________________________________________________________________________________________4
     private void crearDialogoRadioEstilo(final String[] estadoCivil, String titulo){
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialogThemeDos);
 
@@ -152,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+//__________________________________________________________________________________________________5
     private void crearDialogoCheckBoxEstilo(final String[] items, String titulo){
         AlertDialog.Builder alertDialogBuilder= new AlertDialog.Builder(this,R.style.CustomDialogThemeDos);
         final ArrayList<Integer> itemsSeleccionados= new ArrayList<>();
@@ -163,30 +169,30 @@ public class MainActivity extends AppCompatActivity {
                         if (isChecked){
                             itemsSeleccionados.add(which);
                             elementosSeleccionados.add(items[which]);
-                            Toast.makeText(getApplicationContext(),"selecionado: "+itemsSeleccionados.size()+itemsSeleccionados.toString(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"Checks selecionados: ( "+itemsSeleccionados.size()+itemsSeleccionados.toString()+" )",Toast.LENGTH_LONG).show();
                         }else if (itemsSeleccionados.contains(which)){
                             itemsSeleccionados.remove(Integer.valueOf(which));
                             elementosSeleccionados.remove(items[which]);
-                            Toast.makeText(getApplicationContext(),"selecionado: "+itemsSeleccionados.size()+itemsSeleccionados.toString(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"Checks selecionados: ( "+itemsSeleccionados.size()+itemsSeleccionados.toString()+" )",Toast.LENGTH_LONG).show();
                         }
                     }
                 })
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),"boton positivo pulsado"+which,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"which"+which,Toast.LENGTH_LONG).show();
                     }
                 })
-                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),"boton negativo pulsado"+which,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"which"+which,Toast.LENGTH_LONG).show();
                     }
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-
+//__________________________________________________________________________________________________6
 
 
 
