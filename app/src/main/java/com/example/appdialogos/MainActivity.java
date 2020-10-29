@@ -58,7 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
                     case DIALOGO_BOTONES_RADIO:
                         String[] estadoCivil = getResources().getStringArray(R.array.estadoCivil);
-                        crearDialogoRadioEstilo(estadoCivil);
+                        crearDialogoRadioEstilo(estadoCivil, "Estado Civil");
+                        break;
+                    case DIALOGO_CHECK_BOX:
+                        String[] competencias = getResources().getStringArray(R.array.competencias);
+                        crearDialogoCheckBoxEstilo(competencias,"Competencias");
                         break;
                 }
             }
@@ -134,10 +138,10 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void crearDialogoRadioEstilo(final String[] estadoCivil){
+    private void crearDialogoRadioEstilo(final String[] estadoCivil, String titulo){
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialogThemeDos);
 
-        builder.setTitle("Estado Civil")
+        builder.setTitle(titulo)
                 .setSingleChoiceItems(estadoCivil, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -148,7 +152,40 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-
+    private void crearDialogoCheckBoxEstilo(final String[] items, String titulo){
+        AlertDialog.Builder alertDialogBuilder= new AlertDialog.Builder(this,R.style.CustomDialogThemeDos);
+        final ArrayList<Integer> itemsSeleccionados= new ArrayList<>();
+        final boolean[] checkedItems={false,false,false};
+        alertDialogBuilder.setTitle(titulo)
+                .setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        if (isChecked){
+                            itemsSeleccionados.add(which);
+                            elementosSeleccionados.add(items[which]);
+                            Toast.makeText(getApplicationContext(),"selecionado: "+itemsSeleccionados.size()+itemsSeleccionados.toString(),Toast.LENGTH_LONG).show();
+                        }else if (itemsSeleccionados.contains(which)){
+                            itemsSeleccionados.remove(Integer.valueOf(which));
+                            elementosSeleccionados.remove(items[which]);
+                            Toast.makeText(getApplicationContext(),"selecionado: "+itemsSeleccionados.size()+itemsSeleccionados.toString(),Toast.LENGTH_LONG).show();
+                        }
+                    }
+                })
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"boton positivo pulsado"+which,Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"boton negativo pulsado"+which,Toast.LENGTH_LONG).show();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 
 
 

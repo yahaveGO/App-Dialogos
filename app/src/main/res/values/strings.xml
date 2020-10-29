@@ -30,4 +30,10 @@
         <item>Divorciado/a</item>
     </string-array>
 
+    <string-array name="competencias">
+        <item>Desarrollo de Android</item>
+        <item>Diseño de base de datos</item>
+        <item>Desarrollo web</item>
+    </string-array>
+
 </resources>
