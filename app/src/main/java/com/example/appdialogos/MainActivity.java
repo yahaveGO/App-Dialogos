@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +42,13 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String seleccion = parent.getAdapter().getItem(position).toString();
                 switch (seleccion){
+
                     case DIALOGO_ALERTA_SIMPLE:
                         desplegarMensajes("Desea hacer mas registros?");
+                        break;
+
+                    case DIALOGO_ALERTA_ESTILO:
+                        crearDialogoAlertaEstilo("Saludos, diagolo alerta estilo, salir?");
                         break;
                 }
             }
@@ -73,6 +79,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void crearDialogoAlertaEstilo(String mensaje){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.CustomDialogThemeDos);
+        alertDialogBuilder.setTitle("Titulo");
+        alertDialogBuilder
+                .setMessage(mensaje)
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(getApplicationContext(), "Boton positivo pulsado" + id, Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                Toast.makeText(getApplicationContext(), "Boton negativo pulsado" + id, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                )
+                .setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                Toast.makeText(getApplicationContext(), "Boton neutral pulsado" + id, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                )
+        ;
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 
 
 }
